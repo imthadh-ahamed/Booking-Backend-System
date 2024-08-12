@@ -25,3 +25,15 @@ export const VandorLogin = async (req, res, next) => {
     // Check if the Vandor exists
     return res.json({ "message": "Login credential not valid" });
 }
+
+// Get Vandor Profile
+export const GetVandorProfile = async (req, res, next) => {
+}
+
+// Update Vandor Profile
+export const UpdateVandorProfile = async (req, res, next) => {
+}
+
+// Update Vandor Service
+export const UpdateVandorService = async (req, res, next) => {
+}
