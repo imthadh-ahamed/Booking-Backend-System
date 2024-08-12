@@ -42,9 +42,20 @@ export const CreateVandor = async(req, res, next) => {
   // Return the created Vandor object as a JSON response
   return res.json(createdVandor);
 }
+
+
 export const GetVandor = async(req, res, next) => {
+  const vandors = await Vandor.find();
+  
+  if (vandors !== null) {
+    return res.json(vandors);
+  }
+
+  return res.json({ "message": "No Vandors found" });
 
 }
+
+
 export const GetVandorById = async(req, res, next) => {
 
 }
