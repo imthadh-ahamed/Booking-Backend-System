@@ -8,3 +8,8 @@ export const CreateVandorInput = {
   email: "",
   password: "",
 };
+
+export const VandorLoginInputs = {
+  email: "",
+  password: "",
+}
