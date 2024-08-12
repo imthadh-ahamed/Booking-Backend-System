@@ -1,8 +1,19 @@
 import { Vandor } from "../models/index.js";
 import { GeneratePassword, GenerateSalt } from "../utility/index.js";
 
+// Find a Vandor by ID or email
+export const FindVandor = async (id, email) => {
+  if (email) {
+    // Find a Vandor by email
+    return await Vandor.findOne({ email: email });
+  } else {
+    // Find a Vandor by ID
+    return await Vandor.findById(id);
+  }
+};
+
 // Creating a new Vandor
-export const CreateVandor = async(req, res, next) => {
+export const CreateVandor = async (req, res, next) => {
   const {
     name,
     address,
@@ -14,7 +25,7 @@ export const CreateVandor = async(req, res, next) => {
     phone,
   } = req.body;
 
-  const existingVondor = await Vandor.findOne({ email: email });
+  const existingVondor = await FindVandor(null, email);
 
   if (existingVondor !== null) {
     return res.json({ message: "A Vandor is exist with this email ID" });
@@ -42,30 +53,27 @@ export const CreateVandor = async(req, res, next) => {
 
   // Return the created Vandor object as a JSON response
   return res.json(createdVandor);
-}
-
+};
 
 // Get all Vandors
-export const GetVandor = async(req, res, next) => {
+export const GetVandor = async (req, res, next) => {
   // Fetch all Vandors from the database
   const vandors = await Vandor.find();
-  
+
   // Return the Vandors as a JSON response
   if (vandors !== null) {
     return res.json(vandors);
   }
 
   // Return a message if no Vandors are found
-  return res.json({ "message": "No Vandors found" });
-
-}
-
+  return res.json({ message: "No Vandors found" });
+};
 
 // Get Vandor by ID
-export const GetVandorById = async(req, res, next) => {
+export const GetVandorById = async (req, res, next) => {
   // Fetch the Vandor by ID from the database
   const vandorID = req.params.id;
-  const vandor = await Vandor.findById(vandorID);
+  const vandor = await FindVandor(vandorID);
 
   // Return the Vandor as a JSON response
   if (vandor !== null) {
@@ -73,6 +81,5 @@ export const GetVandorById = async(req, res, next) => {
   }
 
   // Return a message if no Vandor is found with this ID
-  return res.json({ "message": "No Vandor found with this ID" });
-
-}
+  return res.json({ message: "No Vandor found with this ID" });
+};
