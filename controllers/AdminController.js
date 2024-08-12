@@ -20,6 +20,7 @@ export const CreateVandor = async(req, res, next) => {
     return res.json({ message: "A Vandor is exist with this email ID" });
   }
 
+  // Generate a new salt and hash the password
   const salt = await GenerateSalt();
   const userpassword = await GeneratePassword(password, salt);
 
@@ -44,26 +45,34 @@ export const CreateVandor = async(req, res, next) => {
 }
 
 
+// Get all Vandors
 export const GetVandor = async(req, res, next) => {
+  // Fetch all Vandors from the database
   const vandors = await Vandor.find();
   
+  // Return the Vandors as a JSON response
   if (vandors !== null) {
     return res.json(vandors);
   }
 
+  // Return a message if no Vandors are found
   return res.json({ "message": "No Vandors found" });
 
 }
 
 
+// Get Vandor by ID
 export const GetVandorById = async(req, res, next) => {
+  // Fetch the Vandor by ID from the database
   const vandorID = req.params.id;
   const vandor = await Vandor.findById(vandorID);
 
+  // Return the Vandor as a JSON response
   if (vandor !== null) {
     return res.json(vandor);
   }
 
+  // Return a message if no Vandor is found with this ID
   return res.json({ "message": "No Vandor found with this ID" });
 
 }
