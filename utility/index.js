@@ -1,3 +1,7 @@
-import { GenerateSalt, GeneratePassword } from "./PasswordUtility.js";
+import {
+  GenerateSalt,
+  GeneratePassword,
+  ValidatePassword,
+} from "./PasswordUtility.js";
 
-export { GenerateSalt, GeneratePassword };
+export { GenerateSalt, GeneratePassword, ValidatePassword };
