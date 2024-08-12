@@ -57,5 +57,13 @@ export const GetVandor = async(req, res, next) => {
 
 
 export const GetVandorById = async(req, res, next) => {
+  const vandorID = req.params.id;
+  const vandor = await Vandor.findById(vandorID);
+
+  if (vandor !== null) {
+    return res.json(vandor);
+  }
+
+  return res.json({ "message": "No Vandor found with this ID" });
 
 }
