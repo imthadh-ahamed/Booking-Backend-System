@@ -13,3 +13,10 @@ export const VandorLoginInputs = {
   email: "",
   password: "",
 }
+
+export const VandorPayload = {
+  _id: "",
+  email: "",
+  name: "",
+  foodtype: [],
+}
