@@ -1,3 +1,7 @@
-import { CreateVandorInput, VandorLoginInputs } from "./Vandor.dto.js";
+import {
+  CreateVandorInput,
+  VandorLoginInputs,
+  VandorPayload,
+} from "./Vandor.dto.js";
 
-export { CreateVandorInput, VandorLoginInputs };
+export { CreateVandorInput, VandorLoginInputs, VandorPayload };
